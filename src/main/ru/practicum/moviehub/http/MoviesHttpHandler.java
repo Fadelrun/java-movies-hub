@@ -36,6 +36,8 @@ public class MoviesHttpHandler extends BaseHttpHandler {
                     } catch (NumberFormatException e) {
                         sendError(exchange, 400, "Некорректный параметр запроса — 'year'");
                     }
+                } else {
+                    sendError(exchange, 400, "Некорректный параметр запроса — '" + query + "'");
                 }
             } else if (method.equals("GET") && path.startsWith("/movies/")) {
                 if (path.equals("/movies/")) {
@@ -91,7 +93,7 @@ public class MoviesHttpHandler extends BaseHttpHandler {
                 } catch (com.google.gson.JsonSyntaxException e) {
                     sendError(exchange, 400, "Некорректный JSON");
                 }
-            } else if (method.equals("DELETE") && path.matches("/movies/\\d+")) {
+            } else if (method.equals("DELETE") && path.startsWith("/movies/")) {
                 if (path.equals("/movies/")) {
                     sendError(exchange, 400, "Некорректный ID");
                     return;
