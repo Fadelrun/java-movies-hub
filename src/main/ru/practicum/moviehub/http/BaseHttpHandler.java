@@ -58,11 +58,6 @@ public abstract class BaseHttpHandler implements HttpHandler {
         );
     }
 
-//    protected <T> T readAndParseJson(HttpExchange exchange, Class<T> clazz) throws IOException, JsonSyntaxException {
-//        String body = readBody(exchange);
-//        return parseJson(body, clazz);
-//    }
-
     protected int extractId(String path) {
         try {
             String[] parts = path.split("/");
